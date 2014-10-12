@@ -1,7 +1,10 @@
 require 'restforce'
-require 'rd_challenge/authenticator'
+# require 'rd_challenge/authenticator'
 
-# client = Restforce.new(:username => username, :password => password , :security_token => security_token, :client_id => client_id, :client_secret  => client_secret)
+module RdChallenge
+end
+
+
 
 
 # campos = client.describe('Lead')
