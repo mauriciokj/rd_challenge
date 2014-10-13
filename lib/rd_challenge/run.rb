@@ -42,6 +42,11 @@ module RdChallenge::Run
 		@authenticate
 	end		
 
+	def destroy_on_sales_force(id)
+		puts "start to destroy on salesforce with id #{id}"
+		client.destroy('Lead',id )
+	end
+
 	def save_on_sales_force
 		puts "start to save on salesforce"
 		puts "setting all attributes"
