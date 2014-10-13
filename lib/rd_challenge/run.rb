@@ -43,16 +43,12 @@ module RdChallenge::Run
 	end		
 
 	def destroy_on_sales_force(id)
-		puts "start to destroy on salesforce with id #{id}"
 		client.destroy('Lead',id )
 	end
 
 	def save_on_sales_force
-		puts "start to save on salesforce"
-		puts "setting all attributes"
 		sales_force_attributes = {}
 		ATTRIBUTES.each do |attribute|
-			puts "#{attribute} will receive #{RdChallenge::Run.send(attribute)}" if RdChallenge::Run.send(attribute)
 			sales_force_attributes[attribute] = RdChallenge::Run.send(attribute) if RdChallenge::Run.send(attribute)
 		end
 		salesforce_id = RdChallenge::Run.Id
