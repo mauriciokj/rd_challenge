@@ -42,7 +42,8 @@ module RdChallenge::Run
 		@authenticate
 	end		
 
-	def save
+	def save_on_sales_force
+		puts "start to save on salesforce"
 		sales_force_attributes = {}
 		ATTRIBUTES.each do |attribute|
 			sales_force_attributes[attribute] = RdChallenge::Run.send(attribute)

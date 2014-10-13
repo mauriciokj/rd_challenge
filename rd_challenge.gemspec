@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 Gem::Specification.new do |s|
     s.add_dependency 'restforce'
     s.name          = 'rd_challenge'
-    s.version       = '0.0.2'
+    s.version       = '0.0.3'
     s.summary       = "Gem to integrate an Rails App with Salesforce"
     s.description   = "Gem to integrate an Rails App with Salesforce"
     s.authors       = ["Mauricio Krzesinski Junior"]

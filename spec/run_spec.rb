@@ -27,9 +27,5 @@ describe RdChallenge::Run do
 		end
 		expect(RdChallenge::Run.send(:Name)).to eq('name')
 	end
-	it "should call the Restforce create" do
-			expect(@run.client).to receive(:create)
-			@run.save
 
-	end
 end
