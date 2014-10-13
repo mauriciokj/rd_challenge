@@ -17,23 +17,23 @@ In your model include the RdChallenge::Run
 
 Then configure the salesforce authentication params in your controller
 
-@object.setup do |auth|
-  auth.client_id = current_user.salesforce_configuration.client_id
-  auth.client_secret = current_user.salesforce_configuration.client_secret
-  auth.username = current_user.salesforce_configuration.username
-  auth.password = current_user.salesforce_configuration.password
-  auth.security_token = current_user.salesforce_configuration.security_token
-end
+  @object.setup do |auth|
+    auth.client_id = current_user.salesforce_configuration.client_id
+    auth.client_secret = current_user.salesforce_configuration.client_secret
+    auth.username = current_user.salesforce_configuration.username
+    auth.password = current_user.salesforce_configuration.password
+    auth.security_token = current_user.salesforce_configuration.security_token
+  end
 
 Then configure the salesforce attribute after save on controller
-RdChallenge::Run.setup do |attribute|
-  attribute.FirstName = @object.first_name
-  attribute.LastName = @object.last_name
-  attribute.Email = @object.email
-  attribute.Phone = @object.phone
-  attribute.Company = @object.company
-  attribute.Id = @object.sales_force_id
- end
+  RdChallenge::Run.setup do |attribute|
+    attribute.FirstName = @object.first_name
+    attribute.LastName = @object.last_name
+    attribute.Email = @object.email
+    attribute.Phone = @object.phone
+    attribute.Company = @object.company
+    attribute.Id = @object.sales_force_id
+  end
 
 The following methods are available:
 
