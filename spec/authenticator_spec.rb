@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe RdChallenge::Authenticator do 
+	
 	let(:client_id) { 'client_id' }
 	let(:client_secret) { 'client_secret' }
 	let(:username) { "username@example.com" }

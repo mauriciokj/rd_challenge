@@ -1,0 +1,53 @@
+module RdChallenge::Run
+	attr_accessor :client
+	ATTRIBUTES = [:Id, :IsDeleted,:MasterRecordId, :LastName, :FirstName,
+									:Salutation, :Name, :Title, :Company,:Street, :City,
+									:State, :PostalCode, :Country, :Phone, :MobilePhone,
+									:Fax, :Email, :Website, :Description, :LeadSource,
+									:Status, :Industry, :Rating, :AnnualRevenue, :NumberOfEmployees,
+									:OwnerId, :IsConverted, :ConvertedDate, :ConvertedAccountId,
+									:ConvertedContactId, :ConvertedOpportunityId, :IsUnreadByOwner,
+									:CreatedDate, :CreatedById, :LastModifiedDate, :LastModifiedById,
+									:SystemModstamp, :LastActivityDate, :Jigsaw, :JigsawContactId,
+									:CleanStatus, :CompanyDunsNumber, :DandbCompanyId, :EmailBouncedReason,
+									:EmailBouncedDate, :SICCode__c, :ProductInterest__c, :Primary__c,
+									:CurrentGenerators__c, :NumberofLocations__c]
+	class << self
+		ATTRIBUTES.each {|atribute| attr_accessor atribute} 
+
+	end
+	@@Id= nil; @@IsDeleted= nil;@@MasterRecordId= nil; @@LastName= nil; @@FirstName= nil;
+	@@Salutation= nil; @@Name= nil; @@Title= nil; @@Company= nil;@@Street= nil; @@City= nil;
+	@@State= nil; @@PostalCode= nil; @@Country= nil; @@Phone= nil; @@MobilePhone= nil;
+	@@Fax= nil; @@Email= nil; @@Website= nil; @@Description= nil; @@LeadSource= nil;
+	@@Status= nil; @@Industry= nil; @@Rating= nil; @@AnnualRevenue= nil; @@NumberOfEmployees= nil;
+	@@OwnerId= nil; @@IsConverted= nil; @@ConvertedDate= nil; @@ConvertedAccountId= nil;
+	@@ConvertedContactId= nil; @@ConvertedOpportunityId= nil; @@IsUnreadByOwner= nil;
+	@@CreatedDate= nil; @@CreatedById= nil; @@LastModifiedDate= nil; @@LastModifiedById= nil;
+	@@SystemModstamp= nil; @@LastActivityDate= nil; @@Jigsaw= nil; @@JigsawContactId= nil;
+	@@CleanStatus= nil; @@CompanyDunsNumber= nil; @@DandbCompanyId= nil; @@EmailBouncedReason= nil;
+	@@EmailBouncedDate= nil; @@SICCode__c= nil; @@ProductInterest__c= nil; @@Primary__c= nil;
+	@@CurrentGenerators__c= nil; @@NumberofLocations__c
+
+
+	def self.setup
+		yield self
+	end
+
+	def authenticate
+		@authenticate ||= RdChallenge::Authenticator.new
+		yield(@authenticate) if block_given?
+		@authenticate.authenticate
+		self.client = @authenticate.client
+		@authenticate
+	end		
+
+	def save
+		sales_force_attributes = {}
+		ATTRIBUTES.each do |attribute|
+			sales_force_attributes[attribute] = RdChallenge::Run.send(attribute)
+		end
+		self.client.create('Lead', sales_force_attributes)
+	end
+
+end
