@@ -44,8 +44,10 @@ module RdChallenge::Run
 
 	def save_on_sales_force
 		puts "start to save on salesforce"
+		puts "setting all attributes"
 		sales_force_attributes = {}
 		ATTRIBUTES.each do |attribute|
+			puts "#{attribute} will receive #{RdChallenge::Run.send(attribute)}"
 			sales_force_attributes[attribute] = RdChallenge::Run.send(attribute)
 		end
 		self.client.create('Lead', sales_force_attributes)
