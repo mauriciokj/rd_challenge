@@ -47,8 +47,8 @@ module RdChallenge::Run
 		puts "setting all attributes"
 		sales_force_attributes = {}
 		ATTRIBUTES.each do |attribute|
-			puts "#{attribute} will receive #{RdChallenge::Run.send(attribute)}"
-			sales_force_attributes[attribute] = RdChallenge::Run.send(attribute)
+			puts "#{attribute} will receive #{RdChallenge::Run.send(attribute)}" if RdChallenge::Run.send(attribute)
+			sales_force_attributes[attribute] = RdChallenge::Run.send(attribute) if RdChallenge::Run.send(attribute)
 		end
 		self.client.create('Lead', sales_force_attributes)
 	end
